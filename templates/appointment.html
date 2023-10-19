@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Appointment Info</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 class="page-title">Appointment Info</h1>
+    <table class="appointment-table">
+        {% for task in tasks %}
+        <tr>
+            <td>Appointment ID: </td>
+            <td>{{ task.a_id }}</td>
+        </tr>
+        <tr>
+            <td>Passenger ID: </td>
+            <td>{{ task.p_id }}</td>
+        </tr>
+        <tr>
+            <td>Driver ID: </td>
+            <td>{{ task.d_id }}</td>
+        </tr>
+        <tr>
+            <td>Start Time: </td>
+            <td>{{ task.planned_start_time }}</td>
+        </tr>
+        <tr>
+            <td>Pick Up: </td>
+            <td>{{ task.planned_pickup }}</td>
+        </tr>
+        <tr>
+            <td>Destination: </td>
+            <td>{{ task.planned_destination }}</td>
+        </tr>
+        <tr>
+            <td>Planned Payment: </td>
+            <td>{{ task.planned_payment_amount }}</td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/deleteAppointment/{{ task.p_id }}/{{ task.a_id }}">
+                    <input type="submit" class="btn delete-btn" value="Delete Appointment">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/change_appointment/{{ task.a_id }}/{{ task.p_id }}">
+                    <input type="submit" class="btn change-btn" value="Change Appointment">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2">
+                <form action="/appointment/{{ id }}" method="POST">
+                    <div class="form">
+                        <input type="submit" class="btn order-btn" name="btn" value="Order_by_pick_up">
+                    </div>
+                    <div class="form">
+                        <label for="lowestPayment">Lowest Payment:</label>
+                        <input type="text" id="lowestPayment" name="Lowest Payment">
+                    </div>
+                    <div class="form">
+                        <label for="highestPayment">Highest Payment:</label>
+                        <input type="text" id="highestPayment" name="Highest Payment">
+                    </div>
+                    <div class="form">
+                        <input type="submit" class="btn order-btn" name="btn" value="Filter Payment Amount">
+                    </div>
+                    <div class="form">
+                        <input type="submit" class="btn order-btn" name="btn" value="Order_by_drop_off">
+                    </div>
+                    <div class="form">
+                        <input type="submit" class="btn order-btn" name="btn" value="Order_by_payment">
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <center>
+        <form action="/homepage_p/{{ id }}">
+            <input type="submit" class="btn go-back-btn" value="Go Back to Main Page">
+        </form>
+    </center>
+</div>
+{% endblock %}

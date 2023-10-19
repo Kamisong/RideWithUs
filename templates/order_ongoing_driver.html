@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<meta http-equiv="refresh" content="1">
+<title>Order in Process</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Your Order is in Process</h1>
+    <table class="order-table">
+        <tr>
+            <th>Currently, Please Focus on Driving</th>
+        </tr>
+    </table>
+    <table class="info-table">
+        <tr>
+            <th>Pick up location:</th>
+            <td>{{ task.pick_up }}</td>
+            <th>Drop off location:</th>
+            <td>{{ task.drop_off }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

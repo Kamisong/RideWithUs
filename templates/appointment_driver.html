@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Homepage</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 class="page-title">Check Appointments!</h1>
+    
+    <div class="form">
+        <form action="/appointment_d/{{ driver.d_id }}" method="POST">
+            <div class="form-actions">
+                <input type="submit" class="btn order-btn" name="btn" value="Order_by_early">
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" class="btn order-btn" name="btn" value="Order_by_latest">
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" class="btn order-btn" name="btn" value="Order_by_pick_up">
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" class="btn order-btn" name="btn" value="Order_by_drop_off">
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" class="btn order-btn" name="btn" value="Order_by_payment">
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" class="btn refresh-btn" name="btn" value="refresh">
+            </div>
+        </form>
+    </div>
+    
+    <table class="appointment-table">
+        <tr>
+            <th>Pick Up</th>
+            <th>Destination</th>
+            <th>Start Time</th>
+            <th>Payment Amount</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.planned_pickup }}</td>
+            <td>{{ task.planned_destination }}</td>
+            <td>{{ task.planned_start_time }}</td>
+            <td>{{ task.planned_payment_amount }}</td>
+            <td>
+                <form action="/get_appointment/{{ driver.d_id }}/{{ task.a_id }}" method="POST">
+                    <input type="submit" class="btn get-appointment-btn" value="Get this appointment" name="btn1">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form action="/homepage_d/{{ driver.d_id }}">
+        <input type="submit" class="btn go-back-btn" value="Go Back to Main Page" />
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Ongoing Order</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+
+    <table class="order-table">
+        <tr>
+            <th>Your Order is Ongoing</th>
+            <th>Click the Finished button below to indicate your trip is completed</th>
+        </tr>
+    </table>
+
+    <div class="form">
+        <form action="/order_waiting_ongoing/{{ o_id }}/{{ u_id }}" method="POST">
+            <input type="submit" class="btn" value="Finished" name="btn1">
+        </form>
+    </div>
+
+    <form action="/order_waiting_ongoing/{{ o_id }}/{{ u_id }}" method="POST">
+        <table class="form-table">
+            <tr>
+                <td>Pick up:</td>
+                <td><input type="text" name="pick_up"></td>
+            </tr>
+            <tr>
+                <td>Drop off:</td>
+                <td><input type="text" name="drop_off"></td>
+            </tr>
+        </table>
+        <input type="submit" class="btn" value="Change Information" name="btn1">
+    </form>
+
+    <table class="info-table">
+        <tr>
+            <td>Current Order Info:</td>
+        </tr>
+        <tr>
+            <td>ID:</td>
+            <td>{{ order.o_id }}</td>
+        </tr>
+        <tr>
+            <td>Pick up:</td>
+            <td>{{ order.pick_up }}</td>
+        </tr>
+        <tr>
+            <td>Drop off:</td>
+            <td>{{ order.drop_off }}</td>
+        </tr>
+    </table>
+
+    <table class="info-table">
+        <tr>
+            <td>Driver Info:</td>
+        </tr>
+        <tr>
+            <td>ID:</td>
+            <td>{{ driver.d_id }}</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>{{ driver.name }}</td>
+        </tr>
+        <tr>
+            <td>Phone Number:</td>
+            <td>{{ driver.phoneNumber }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Homepage</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 class="page-title">Appointment Info</h1>
+    {% for task in tasks %}
+    <table class="appointment-table" border="1">
+        <br>
+        <tr>
+            <td>Appointment ID:</td>
+            <td>{{ task.a_id }}</td>
+        </tr>
+        <tr>
+            <td>Passenger ID:</td>
+            <td>{{ task.p_id }}</td>
+        </tr>
+        <tr>
+            <td>Driver ID:</td>
+            <td>{{ task.d_id }}</td>
+        </tr>
+        <tr>
+            <td>Start Time:</td>
+            <td>{{ task.planned_start_time }}</td>
+        </tr>
+        <tr>
+            <td>Pick Up:</td>
+            <td>{{ task.planned_pickup }}</td>
+        </tr>
+        <tr>
+            <td>Destination:</td>
+            <td>{{ task.planned_destination }}</td>
+        </tr>
+        <tr>
+            <td>Planned Payment:</td>
+            <td>{{ task.planned_payment_amount }}</td>
+        </tr>
+    </table>
+    {% endfor %}
+    <form action="/Myappointment_d/{{ id }}" method="POST">
+        <div class="form">
+            <input type="submit" class="btn order-btn" name="btn" value="Order_by_pick_up">
+        </div>
+        <div class="form">
+            <label for="Lowest_Payment">Lowest Payment:</label>
+            <input type="text" id="Lowest_Payment" name="Lowest Payment">
+            
+            <label for="Highest_Payment">Highest Payment:</label>
+            <input type="text" id="Highest_Payment" name="Highest Payment">
+            
+            <div class="form-actions">
+                <input type="submit" class="btn filter-btn" name="btn" value="Filter Payment Amount">
+            </div>
+        </div>
+        <div class="form">
+            <input type="submit" class="btn order-btn" name="btn" value="Order_by_drop_off">
+        </div>
+
+        <div class="form">
+            <input type="submit" class="btn order-btn" name="btn" value="Order_by_payment">
+        </div>
+    </form>
+    <center>
+        <form action="/homepage_d/{{ id }}">
+            <input type="submit" class="btn go-back-btn" value="Go Back to Main Page" />
+        </form>
+    </center>
+</div>
+{% endblock %}

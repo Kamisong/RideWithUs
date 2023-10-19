@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Homepage</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 class="page-title">User Info</h1>
+    <table class="user-info-table">
+        <tr>
+            <td>ID: </td>
+            <td>{{ tasks.d_id }}</td>
+        </tr>
+        <tr>
+            <td>Name: </td>
+            <td>{{ tasks.name }}</td>
+        </tr>
+        <tr>
+            <td>Phone Number: </td>
+            <td>{{ tasks.phoneNumber }}</td>
+        </tr>
+        <tr>
+            <td>Address: </td>
+            <td>{{ tasks.address }}</td>
+        </tr>
+        <tr>
+            <td>Card Info: </td>
+            <td>{{ tasks.card_info }}</td>
+        </tr>
+    </table>
+
+    <div class="form">
+        <form action="/homepage_d/{{ tasks.d_id }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+            
+            <label for="card_info">Card Info:</label>
+            <input type="text" id="card_info" name="card_info">
+            
+            <div class="form-actions">
+                <input type="submit" class="btn edit-btn" name="btn" value="edit_user_info">
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" class="btn check-btn" name="btn" value="check_order">
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" class="btn check-btn" name="btn" value="check_appointment">
+            </div>
+        </form>
+    </div>
+
+    <div class="page-links">
+        <form action="/Myappointment_d/{{ tasks.d_id }}">
+            <input type="submit" class="btn view-appointment-btn" value="View My Appointment" />
+        </form>
+        <form action="/profilePage_driver/{{ tasks.d_id }}">
+            <input type="submit" class="btn profile-btn" value="Profile Page" />
+        </form>
+    </div>
+</div>
+{% endblock %}
+

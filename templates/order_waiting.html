@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<meta http-equiv="refresh" content="1">
+<title>Waiting for Driver</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 class="page-title">Waiting for a Driver</h1>
+    <table class="waiting-table">
+        <tr>
+            <th>Your Order Has Been Published</th>
+            <th>Waiting for a Driver</th>
+        </tr>
+    </table>
+    
+    <div class="form">
+        <form action="/cancel_order/{{ u_id }}/{{ o_id }}" method="POST">
+            <div class="form-actions">
+                <input type="submit" class="btn cancel-btn" name="btn1" value="Cancel">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

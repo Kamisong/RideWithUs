@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>ProfilePage</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content" style="text-align: center">
+    <h1 class="page-title">User Info</h1>
+    <center>
+        <table class="user-info-table">
+            <tr>
+                <td>ID: </td>
+                <td>{{ tasks.d_id }}</td>
+            </tr>
+            <tr>
+                <td>Name: </td>
+                <td>{{ tasks.name }}</td>
+            </tr>
+            <tr>
+                <td>Phone Number: </td>
+                <td>{{ tasks.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <td>Address: </td>
+                <td>{{ tasks.address }}</td>
+            </tr>
+            <tr>
+                <td>Card Info: </td>
+                <td>{{ tasks.card_info }}</td>
+            </tr>
+            <tr>
+                <td>Balance: </td>
+                <td>{{ tasks.balance }}</td>
+            </tr>
+        </table>
+        <form action="/homepage_d/{{ tasks.d_id }}">
+            <input type="submit" class="btn go-back-btn" value="Go Back to Main Page" />
+        </form>
+    </center>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Change Appointment</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="form">
+    <form action="/change_appointment/{{ o_id }}/{{ passenger }}" method="POST">
+        <label for="pick_up_app">Appointment Pick Up:</label>
+        <input type="text" id="pick_up_app" name="pick_up_app"><br>
+        
+        <label for="drop_off_app">Appointment Drop Off:</label>
+        <input type="text" id="drop_off_app" name="drop_off_app"><br>
+        
+        <label for="start_time">Start Time:</label>
+        <input type="text" id="start_time" name="start_time"><br>
+        
+        <label for="planned_payment">How much would you like to pay for this trip?:</label>
+        <input type="text" id="planned_payment" name="planned_payment"><br>
+        
+        <div class="form-actions">
+            <input type="submit" class="btn change-btn" name="btn" value="Change_Appointment">
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Passenger Homepage</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 class="page-title">Passenger Homepage</h1>
+
+    <div class="user-info">
+        <table>
+            <tr>
+                <td>ID: </td>
+                <td>{{ tasks.d_id }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="form">
+        <form action="/homepage_p/{{ tasks.d_id }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+            
+            <label for="card_info">Card Info:</label>
+            <input type="text" id="card_info" name="card_info">
+
+            <div class="form-actions">
+                <input type="submit" class="btn edit-btn" name="btn" value="edit_user_info">
+            </div>
+
+            <label for="pick_up">Pick Up:</label>
+            <input type="text" id="pick_up" name="pick_up">
+            
+            <label for="drop_off">Drop Off:</label>
+            <input type="text" id="drop_off" name="drop_off">
+            
+            <label for="payment_amount">How much you want to pay for the trip:</label>
+            <input type="number" id="payment_amount" name="payment_amount">
+
+            <div class="form-actions">
+                <input type="submit" class="btn post-btn" name="btn" value="post_order">
+            </div>
+
+            <label for="pick_up_app">Appointment Pick Up:</label>
+            <input type="text" id="pick_up_app" name="pick_up_app">
+            
+            <label for="drop_off_app">Appointment Drop Off:</label>
+            <input type="text" id="drop_off_app" name="drop_off_app">
+            
+            <label for="start_time">Start Time:</label>
+            <input type="text" id="start_time" name="start_time">
+
+            <label for="planned_payment">How much would you like to pay for this trip?:</label>
+            <input type="text" id="planned_payment" name="planned_payment">
+
+            <div class="form-actions">
+                <input type="submit" class="btn post-btn" name="btn" value="post_appointment">
+            </div>
+        </form>
+    </div>
+
+    <div class="profile-links">
+        <form action="/profilePage/{{ tasks.d_id }}">
+            <input type="submit" class="btn profile-btn" value="Profile Page">
+        </form>
+
+        <table>
+            <form action="/order_p/{{ tasks.d_id }}">
+                <input type="submit" class="btn view-btn" value="View My Order">
+            </form>
+
+            <form action="/appointment/{{ tasks.d_id }}">
+                <input type="submit" class="btn view-btn" value="View My Appointment">
+            </form>
+        </table>
+    </div>
+</div>
+{% endblock %}
